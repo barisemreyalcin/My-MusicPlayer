@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
     <title>My Music Player | Listen your favorite songs...</title>
 </head>
 <body>
     
+    <div class="container">
+        <img id="music-img" src="" alt="">
+        <audio id="audio" src=""></audio>
+        <div id="music-details">
+            <p class="title"></p>
+            <p class="singer"></p>
+        </div>
+        <div id="controls">
+            <i id="previous" class="fa-solid fa-backward-step"></i>
+            <i id="play" class="fa-solid fa-play"></i>
+            <i id="next" class="fa-solid fa-forward-step"></i>
+        </div>
+    </div>
+
     <script src="music.js"></script>
     <script src="music-player.js"></script>
     <script src="app.js"></script>
