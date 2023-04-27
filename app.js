@@ -8,6 +8,8 @@ const next = document.querySelector("#controls #next");
 const current = document.querySelector("#current-time");
 const duration = document.querySelector("#duration-time");
 const progressBar = document.querySelector("#progress-bar");
+const volumeIcon = document.querySelector("#volume");
+const volumeBar = document.querySelector("#volume-bar");
 
 const player = new MusicPlayer(musicList);
 
@@ -78,8 +80,38 @@ audio.addEventListener("timeupdate", () => {
 })
 
 // Progress Bar üzerinde konumlanma
-
 progressBar.addEventListener("input", () => {
     current.textContent = calculateDuration(progressBar.value);
     audio.currentTime = progressBar.value;
+})
+
+// Ses kontrol
+let soundState = "unmuted";
+
+volumeBar.addEventListener("input", (level) => {
+    const soundValue = level.target.value;
+    audio.volume = soundValue / 100;
+    if(soundValue == 0) {
+        audio.muted = true;
+        soundState = "muted";
+        volumeIcon.classList = "fa-solid fa-volume-xmark";
+    }else {
+        audio.muted = false;
+        soundState = "unmuted";
+        volumeIcon.classList = "fa-solid fa-volume-high";
+    }
+})
+
+volumeIcon.addEventListener("click", () => {
+    if(soundState === "unmuted"){
+        audio.muted = true;
+        soundState = "muted";
+        volumeIcon.classList = "fa-solid fa-volume-xmark";
+        volumeBar.value = 0;
+    }else {
+        audio.muted = false;
+        soundState = "unmuted";
+        volumeIcon.classList = "fa-solid fa-volume-high";
+        volumeBar.value = 100;
+    }    
 })

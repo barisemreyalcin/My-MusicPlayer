@@ -6,7 +6,8 @@
     margin-bottom: 20px;
 }
 
-#progress .time {
+#progress .time,
+#controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
