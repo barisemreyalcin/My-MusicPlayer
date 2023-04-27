@@ -1,28 +1,22 @@
-.container {
-    width: 320px;
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-#progress {
-    margin-bottom: 20px;
+.container {
+    width: 380px;
 }
 
 #progress .time,
-#controls {
+.card-footer,
+.volume-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-#progress-bar {
-    width: 100%;
-}
-
-img {
-    width: 100%;
-}
-
-#controls {
-    font-size: 25px;
-    color: blue;
-    margin-right: 25px;
+.volume-container i {
+    margin-right: 7px;
 }
