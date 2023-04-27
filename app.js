@@ -1,10 +1,13 @@
-const container = document.querySelector(".container")
-const image = document.querySelector("#music-img")
-const title = document.querySelector("#music-details .title")
-const singer = document.querySelector("#music-details .singer")
-const previous = document.querySelector("#controls #previous")
-const play = document.querySelector("#controls #play")
-const next = document.querySelector("#controls #next")
+const container = document.querySelector(".container");
+const image = document.querySelector("#music-img");
+const title = document.querySelector("#music-details .title");
+const singer = document.querySelector("#music-details .singer");
+const previous = document.querySelector("#controls #previous");
+const play = document.querySelector("#controls #play");
+const next = document.querySelector("#controls #next");
+const current = document.querySelector("#current-time");
+const duration = document.querySelector("#duration-time");
+const progressBar = document.querySelector("#progress-bar");
 
 const player = new MusicPlayer(musicList);
 
@@ -59,3 +62,21 @@ function playMusic() {
     play.classList = "fa-solid fa-pause";
     audio.play();
 }
+
+const calculateDuration = (totalSecond) => {
+    const minute = Math.floor(totalSecond / 60);
+    const second = Math.floor(totalSecond % 60);
+    const adjustedSecond = second < 10 ? `0${second}` : `${second}`;
+    const result = `${minute}:${adjustedSecond}`;
+    return result;
+}
+
+audio.addEventListener("loadedmetadata", () => {
+    duration.textContent = calculateDuration(audio.duration); // Saniyeyi dakikaya çevirecek method tanımlıyorum
+    progressBar.max = Math.floor(audio.duration);
+})
+
+audio.addEventListener("timeupdate", () => {
+    progressBar.value = Math.floor(audio.currentTime);
+    current.textContent = calculateDuration(progressBar.value);
+})
