@@ -29,35 +29,31 @@ play.addEventListener("click", () => {
     isMusicPlay ? pauseMusic() : playMusic();
 })
 
-previous.addEventListener("click", () => {
-    previousMusic();
-})
+previous.addEventListener("click", () => { previousMusic(); });
 
-next.addEventListener("click", () => {
-    nextMusic();
-})
+next.addEventListener("click", () => { nextMusic(); });
 
-function previousMusic() {
+const previousMusic = () => {
     player.previous();
     let music = player.getMusic();
     displayMusic(music)
     playMusic();
 }
 
-function nextMusic() {
+const nextMusic = () => {
     player.next();
     let music = player.getMusic();
     displayMusic(music)
     playMusic();
 }
 
-function pauseMusic() {
+const pauseMusic = () => {
     container.classList.remove("playing");
     play.classList = "fa-solid fa-play";
     audio.pause();
 }
 
-function playMusic() {
+const playMusic = () => {
     container.classList.add("playing");
     play.classList = "fa-solid fa-pause";
     audio.play();
@@ -79,4 +75,11 @@ audio.addEventListener("loadedmetadata", () => {
 audio.addEventListener("timeupdate", () => {
     progressBar.value = Math.floor(audio.currentTime);
     current.textContent = calculateDuration(progressBar.value);
+})
+
+// Progress Bar üzerinde konumlanma
+
+progressBar.addEventListener("input", () => {
+    current.textContent = calculateDuration(progressBar.value);
+    audio.currentTime = progressBar.value;
 })
