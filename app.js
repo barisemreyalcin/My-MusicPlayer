@@ -21,5 +21,41 @@ function displayMusic(music) {
 }
 
 play.addEventListener("click", () => {
-    audio.play();
+
+    const isMusicPlay = container.classList.contains("playing");
+    isMusicPlay ? pauseMusic() : playMusic();
 })
+
+previous.addEventListener("click", () => {
+    previousMusic();
+})
+
+next.addEventListener("click", () => {
+    nextMusic();
+})
+
+function previousMusic() {
+    player.previous();
+    let music = player.getMusic();
+    displayMusic(music)
+    playMusic();
+}
+
+function nextMusic() {
+    player.next();
+    let music = player.getMusic();
+    displayMusic(music)
+    playMusic();
+}
+
+function pauseMusic() {
+    container.classList.remove("playing");
+    play.classList = "fa-solid fa-play";
+    audio.pause();
+}
+
+function playMusic() {
+    container.classList.add("playing");
+    play.classList = "fa-solid fa-pause";
+    audio.play();
+}
